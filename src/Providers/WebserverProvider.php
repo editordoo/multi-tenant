@@ -24,7 +24,7 @@ class WebserverProvider extends ServiceProvider
         // Sets file access as wide as possible, ignoring server masks.
         umask(0);
         $this->registerConfiguration();
-        $this->registerGeneratorViews();
+//         $this->registerGeneratorViews();
 
         $this->app->register(Webserver\FilesystemProvider::class);
         $this->app->register(Webserver\EventProvider::class);
@@ -43,7 +43,7 @@ class WebserverProvider extends ServiceProvider
         );
     }
 
-    protected function registerGeneratorViews()
+    public function boot()
     {
         $this->loadViewsFrom(
             __DIR__ . '/../../assets/generators',
