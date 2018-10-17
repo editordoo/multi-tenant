@@ -309,7 +309,8 @@ class Connection
 
         switch ($mode) {
             case static::DIVISION_MODE_SEPARATE_DATABASE:
-                $clone['username'] = $clone['database'] = $website->uuid;
+                $clone['database'] = config('tenancy.db.prefix').$website->uuid;
+                $clone['username'] = $website->uuid;
                 $clone['password'] = $this->passwordGenerator->generate($website);
                 break;
             case static::DIVISION_MODE_SEPARATE_PREFIX:
